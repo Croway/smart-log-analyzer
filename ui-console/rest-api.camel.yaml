@@ -1,11 +1,4 @@
 - rest:
-    path: /ui-console/
-    get:
-      - id: serve-ui
-        produces: text/html
-        to: direct:serve-ui
-
-- rest:
     path: /api/traces
     get:
       - id: list-traces
@@ -89,27 +82,3 @@
                 - setHeader:
                     name: Content-Type
                     constant: application/json
-
-- route:
-    id: route-serve-ui
-    from:
-      uri: direct:serve-ui
-      steps:
-        - pollEnrich:
-            expression:
-              simple: file:${sys.user.dir}?fileName=index.html&noop=true&idempotent=false
-            timeout: 1000
-        - choice:
-            when:
-              - simple: ${body} != null
-                steps:
-                  - setHeader:
-                      name: Content-Type
-                      constant: text/html
-            otherwise:
-              steps:
-                - setHeader:
-                    name: CamelHttpResponseCode
-                    constant: 404
-                - setBody:
-                    constant: "UI file not found"

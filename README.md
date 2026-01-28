@@ -120,7 +120,7 @@ docker-compose up
 
 ```bash
 cd correlator
-jbang -Dcamel.jbang.version=4.17.0 camel@apache/camel run \
+camel run \
   traces-mapper.camel.yaml \
   logs-mapper.camel.yaml \
   infinispan.camel.yaml \
@@ -132,7 +132,7 @@ jbang -Dcamel.jbang.version=4.17.0 camel@apache/camel run \
 
 ```bash
 cd analyzer
-jbang -Dcamel.jbang.version=4.17.0 camel@apache/camel run error-analyzer.camel.yaml
+camel run error-analyzer.camel.yaml
 ```
 
 ### 4. Start Log Generator
@@ -141,7 +141,6 @@ jbang -Dcamel.jbang.version=4.17.0 camel@apache/camel run error-analyzer.camel.y
 cd log-generator
 jbang --javaagent=./opentelemetry-javaagent.jar \
   -Dotel.javaagent.configuration-file=./agent.properties \
-  -Dcamel.jbang.version=4.17.0 \
   camel@apache/camel run log-generator.camel.yaml
 ```
 
@@ -149,7 +148,7 @@ jbang --javaagent=./opentelemetry-javaagent.jar \
 
 ```bash
 cd ui-console
-jbang -Dcamel.jbang.version=4.17.0 camel@apache/camel run *
+camel run *
 ```
 
 ## Infrastructure Services

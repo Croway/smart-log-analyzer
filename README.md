@@ -149,9 +149,7 @@ jbang --javaagent=./opentelemetry-javaagent.jar \
 
 ```bash
 cd ui-console
-jbang -Dcamel.jbang.version=4.17.0 camel@apache/camel run \
-  jms-file-storage.camel.yaml \
-  rest-api.camel.yaml
+jbang -Dcamel.jbang.version=4.17.0 camel@apache/camel run *
 ```
 
 ## Infrastructure Services
